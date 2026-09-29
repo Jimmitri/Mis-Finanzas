@@ -1,7 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
-
+import '../../utils/app_colors.dart';
 import '../auth/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,118 +11,67 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
-
-    Timer(
-      const Duration(seconds: 3),
-          () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const LoginScreen(),
-          ),
-        );
-      },
-    );
+    Timer(const Duration(seconds: 2), () {
+      if (!mounted) return;
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => const LoginScreen(),
+        ),
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-
       body: Container(
-
         width: double.infinity,
-
         decoration: const BoxDecoration(
-
           gradient: LinearGradient(
-
             begin: Alignment.topCenter,
-
             end: Alignment.bottomCenter,
-
             colors: [
-
-              Color(0xff6C63FF),
-
-              Color(0xff8B5CF6),
-
+              AppColors.primary,
+              AppColors.primaryDark,
             ],
-
           ),
-
         ),
-
-        child: Column(
-
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
-
           children: [
-
-            const Icon(
-
-              Icons.menu_book_rounded,
-
+            Icon(
+              Icons.account_balance_wallet_rounded,
               color: Colors.white,
-
-              size: 90,
-
+              size: 85,
             ),
-
-            const SizedBox(height: 25),
-
-            const Text(
-
-              "BookShelf",
-
+            SizedBox(height: 20),
+            Text(
+              "Mis Finanzas",
               style: TextStyle(
-
                 color: Colors.white,
-
-                fontSize: 34,
-
+                fontSize: 32,
                 fontWeight: FontWeight.bold,
-
               ),
-
             ),
-
-            const SizedBox(height: 8),
-
-            const Text(
-
-              "Tu biblioteca personal",
-
+            SizedBox(height: 8),
+            Text(
+              "Control de Gastos e Ingresos",
               style: TextStyle(
-
                 color: Colors.white70,
-
-                fontSize: 18,
-
+                fontSize: 16,
               ),
-
             ),
-
-            const SizedBox(height: 45),
-
-            const CircularProgressIndicator(
-
+            SizedBox(height: 40),
+            CircularProgressIndicator(
               color: Colors.white,
-
             ),
-
           ],
-
         ),
-
       ),
-
     );
-
   }
 }

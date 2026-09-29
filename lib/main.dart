@@ -3,17 +3,18 @@ import 'config/theme.dart';
 import 'screens/splash/splash_screen.dart';
 
 void main() {
-  runApp(const BookShelfApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MisFinanzasApp());
 }
 
-class BookShelfApp extends StatelessWidget {
-  const BookShelfApp({super.key});
+class MisFinanzasApp extends StatelessWidget {
+  const MisFinanzasApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'BookShelf',
+      title: 'Mis Finanzas',
       theme: AppTheme.lightTheme,
       home: const SplashScreen(),
     );

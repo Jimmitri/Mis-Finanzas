@@ -1,30 +1,44 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-/*
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:bookshelf/main.dart';
+import 'package:mis_finanzas/models/transaction.dart';
+import 'package:mis_finanzas/models/user.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  test('User model toMap and fromMap test', () {
+    final user = User(
+      id: 1,
+      name: 'Adrian',
+      email: 'adrian@example.com',
+      password: 'password123',
+    );
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    final map = user.toMap();
+    final fromMapUser = User.fromMap(map);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(fromMapUser.id, 1);
+    expect(fromMapUser.name, 'Adrian');
+    expect(fromMapUser.email, 'adrian@example.com');
+    expect(fromMapUser.password, 'password123');
   });
-}*/
+
+  test('TransactionItem model toMap and fromMap test', () {
+    final transaction = TransactionItem(
+      id: 1,
+      userId: 1,
+      title: 'Almuerzo',
+      amount: 15.50,
+      type: 'Gasto',
+      category: 'Comida',
+      date: '2026-09-28',
+      description: 'Menú ejecutivo',
+    );
+
+    final map = transaction.toMap();
+    final fromMapItem = TransactionItem.fromMap(map);
+
+    expect(fromMapItem.id, 1);
+    expect(fromMapItem.title, 'Almuerzo');
+    expect(fromMapItem.amount, 15.50);
+    expect(fromMapItem.type, 'Gasto');
+    expect(fromMapItem.category, 'Comida');
+  });
+}

@@ -1,6 +1,6 @@
-# bookshelf
+# Mis Finanzas
 
-A new Flutter project.
+Aplicación de gestión de finanzas personales desarrollada en Flutter.
 
 ## Getting Started
 

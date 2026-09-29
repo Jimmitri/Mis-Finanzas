@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '../books/books_screen.dart';
 import '../profile/profile_screen.dart';
+import '../transactions/transactions_screen.dart';
 import 'home_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -12,78 +11,51 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-
   int currentIndex = 0;
 
-  final List<Widget> pages = const [
-
-    HomeScreen(),
-
-    BooksScreen(),
-
-    ProfileScreen(),
-
-  ];
+  void _changeTab(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      HomeScreen(
+        onNavigateToTransactions: () => _changeTab(1),
+      ),
+      const TransactionsScreen(),
+      const ProfileScreen(),
+    ];
 
     return Scaffold(
-
       body: pages[currentIndex],
-
       bottomNavigationBar: NavigationBar(
-
         selectedIndex: currentIndex,
-
-        onDestinationSelected: (index){
-
+        onDestinationSelected: (index) {
           setState(() {
-
             currentIndex = index;
-
           });
-
         },
-
         destinations: const [
-
           NavigationDestination(
-
-            icon: Icon(Icons.home_outlined),
-
-            selectedIcon: Icon(Icons.home),
-
+            icon: Icon(Icons.dashboard_outlined),
+            selectedIcon: Icon(Icons.dashboard),
             label: "Inicio",
-
           ),
-
           NavigationDestination(
-
-            icon: Icon(Icons.menu_book_outlined),
-
-            selectedIcon: Icon(Icons.menu_book),
-
-            label: "Biblioteca",
-
+            icon: Icon(Icons.receipt_long_outlined),
+            selectedIcon: Icon(Icons.receipt_long),
+            label: "Movimientos",
           ),
-
           NavigationDestination(
-
             icon: Icon(Icons.person_outline),
-
             selectedIcon: Icon(Icons.person),
-
             label: "Perfil",
-
           ),
-
         ],
-
       ),
-
     );
-
   }
-
 }
